@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/LayoutPadrao}"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"> 
+
+<head>
+<title>Listar Task</title>
+<!--script impressão-->
+<script>
+function cont(){
+var conteudo = document.getElementById('print').innerHTML,
+tela_impressao = window.open('about:blank');
+tela_impressao.document.write(conteudo);
+tela_impressao.focus(); 
+tela_impressao.window.print();
+tela_impressao.window.close();
+}
+</script>
+
+
+</head>
+
+<section layout:fragment="conteudo">
+		<div th:replace="/layout/MensagemGeral :: alert"></div>
+
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<div class="clearfix">
+				<h1 class="panel-title aw-titulo-panel">Detalhes</h1>
+				<a class="btn btn-default pull-right" th:href="@{/tasks}" title="Listar todas as Task"  rel="tooltip" data-placement="bottom">
+				<span class="glyphicon glyphicon-search"></span>Listar</a>		
+				<!--NovaTask-->
+				<a class="btn btn-success pull-right" id="tbn-nav-new" th:href="@{/tasks/novo}" sec:authorize="hasRole('ROLE_ADMIN')" 
+					title="Nova Task"  rel="tooltip" data-placement="bottom">
+					<span class="glyphicon glyphicon-plus-sign"></span>Nova Task
+				</a>
+			</div>	
+		</div>
+		
+		<div class="panel-body" id="print">
+		
+		<div class="col-md-12 alert detalhes">
+			<label>Titulo: </label><strong><span class="text-primary" th:text="${task.titulo}"></span></strong>
+		<div class=" pull-right">
+			<!--Imprimir-->
+			<a class="btn btn-default">
+				<span class="glyphicon glyphicon-print" title="Imprimir" rel="tooltip" data-placement="bottom" onclick="cont();"></span>
+			</a>
+		</div>
+		</div>
+		
+		<div class="col-md-3 alert detalhes ">
+			<div class="col-ms-1">
+			<label>Código: </label><span class="text-primary" th:text="${task.codigo}"></span>
+			</div>
+			
+			<div class="col-ms-1">
+			<label>Tipo: </label><span class="text-primary" th:text="${task.tipo}"></span>
+			</div>
+			
+			<div class="col-ms-1">
+			<label>Código Cliente: </label><span class="text-primary" th:text="${task.cd_cliente}"></span>
+			</div>
+			
+			<div class="col-ms-1">
+			<label>Código Interno: </label><span class="text-primary" th:text="${task.cd_interno}"></span>
+			</div>
+			
+			<div class="col-ms-1">
+			<label>DRC Relacionada: </label><span class="text-primary" th:text="${task.dcr_relacionada}"></span>
+			</div>
+			
+			<div class="col-ms-1">
+				<label>Responsável: </label><span class="text-primary"><a th:text="${{task.responsaveis.nome}}" th:href="@{/tasks/horas/responsavel/list/{codigo}(codigo=${task.responsaveis.codigo})}"></a></span> 
+			</div>
+			<div class="col-ms-1">
+				<label>Lider: </label><span class="text-primary" th:text="${{task.lideres.nome}}"></span>
+			</div>	
+			
+		</div>
+		
+		<div class="col-md-3 col-sm-offset-1 alert detalhes">
+			<div class="col-ms-1">
+			<label>Status: </label><strong><span class="text-primary" th:text="${task.status.descricao}" th:classappend="${task.open ? 'text-success' : 'text'}"></span></strong>
+			</div>
+			<div class="col-ms-1">
+				<label>Modulo:</label><span class="text-primary" th:text="${{task.modulos.nome}}"></span>
+			</div>
+		
+			<div class="col-ms-1">
+			<label>Data Inicial: </label><span class="text-primary" th:text="${{task.dataInicial}}"></span>
+			</div>
+			
+			<div class="col-ms-1">
+			<label>Data Prevista: </label><span class="text-primary" th:text="${{task.dataPrevista}}"></span>
+			</div>
+			
+			<div class="col-ms-1">
+			<label>Data Final: </label><span class="text-primary" th:text="${{task.dataConclusao}}"></span>
+				<!--Horas Modal-->
+				<a th:if="${not #lists.isEmpty(task.dataConclusao)}" class="btn pull-right" data-toggle="modal" data-target="#tempoTask" 
+					th:attr="data-codigo=${task.codigo}, data-dataInicial=${{task.dataInicial}}, data-dataConclusao=${{task.dataConclusao}}"
+					title="Total de Dias da Task"  rel="tooltip" data-placement="bottom" >
+					<span class="glyphicon glyphicon-dashboard"></span>
+				</a>			
+			</div>
+			
+			<div class="col-ms-1">
+				<label>Link SDTT: </label>
+				<a th:if="${not #lists.isEmpty(task.link)}" class="btn btn-link btn-xs" th:href="${task.link}"							
+					th:text="http_link..." target="_blak">
+				</a>							
+			</div>
+			
+			<div class="col-ms-1">
+				<label>Link  SVN: </label>
+				<a th:if="${not #lists.isEmpty(task.linksvn)}" class="btn btn-link btn-xs" th:href="${task.linksvn}"							
+					th:text="http_link..." target="_blak">
+				</a>							
+			</div>				
+			
+		</div>
+				
+		
+		<div class="aw-graph-box col-md-4 col-sm-offset-1 detalhes">
+			<label class=" aw-graph-box__header">Descrição Detalhada: </label><br>
+			<textarea rows="6" class="form-control" th:text="${task.descricao}"></textarea>
+		</div>
+		
+						
+		<div id="btns_detalhe aw-graph-box" class="col-md-12 pull-left" >	
+						
+			<!--Editar-->
+			<a class="btn btn-primary" sec:authorize="hasRole('ROLE_ADMIN')"
+				th:href="@{/tasks/{codigo}(codigo=${task.codigo})}"
+				title="Editar"  rel="tooltip" data-placement="bottom">
+				<span class="glyphicon glyphicon-pencil"></span>
+			</a>		
+			<!--Excluir-->
+			<a class="btn btn-danger" sec:authorize="hasRole('ROLE_ADMIN')"
+				data-toggle="modal" data-target="#confirmacaoExclusaoModal"
+				th:attr="data-codigo=${task.codigo},data-tipo=${task.tipo}, data-titulo=${task.titulo}"
+				title="Excluir"  rel="tooltip" data-placement="bottom"> <span
+					class="glyphicon glyphicon-trash"></span>
+			</a>
+						
+			<a class="btn btn-success" data-toggle="modal" data-target="#addHoras" sec:authorize="hasRole('ROLE_USER')" 
+				th:attr="data-codigo=${task.codigo}, data-tipo=${task.tipo}, data-titulo=${task.titulo}"
+				title="Lançar Horas nessa Task"  rel="tooltip" data-placement="bottom">
+				<span class="glyphicon glyphicon-time"></span>
+			</a>
+
+		 
+			       	        
+	      	<div id="tempo" class="pull-right">
+				<span class="pull=left" th:replace="layout/DataHora :: layout-data-hora"></span>
+			</div>	
+		
+      	</div>      	
+
+	</div>
+	
+		
+			<!-- tabelas de Horas BEGIN -->
+			<div class="table-responsive" th:if="${not #lists.isEmpty(horas)}">
+		   		<table id="tbHorasDetalhe" class="table table-hover " >
+		   		
+		   			<thead class="table-bordered" th:if="${not #lists.isEmpty(horas)}">
+		   				<tr>
+		   					<th id="HSAcao" class="text-center col-md-1 glyphicon glyphicon-trash"></th>
+		   					<th id="HSData" class="text-left ">Data</th>
+		   					<th id="HSHoras" class="text-left">Horas</th>
+		   					<th id="HSDescricao" class="text-left">Descrição</th>
+		   					<th id="HSResponsavel" class="text-left">Responsável</th>   				
+		   				</tr>
+		   			</thead>
+		   				   			
+		   			<tbody>
+		   				<tr th:each="horal : ${horas}" th:if="${task.codigo == horal.tasks.codigo}"> 							   						   					
+		   					<td id="HSacao" class="text-center">
+		   						<a class="btn btn-link btn-xs" th:href="@{/tasks/horas/delete/{codigo}(codigo=${horal.codigo})}" 
+		   								title="Excluir" rel="tooltip" data-placement="top">
+		   							<span class="glyphicon glyphicon-trash"></span>
+		   						</a>		   						  							   						
+		   						
+		   					
+		   					<td id="HSData">  <a class="text-right " th:text=" ${{horal.dataHora}} " th:href="@{/tasks/horas/{codigo}(codigo=${horal.codigo})}"></a> </td>
+		   					<td id="HSHoras">  <a class="text-center " th:text="| ${horal.horas}:Hs |" th:href="@{/tasks/horas/{codigo}(codigo=${horal.codigo})}"></a></td>
+		   					<td id="HSDescricao">  <a class="text-left" th:text="${horal.descricao}" th:href="@{/tasks/horas/{codigo}(codigo=${horal.codigo})}"></a></td>
+		   					<td id="HSResponsavel"> <a class="text-left" th:text=" | ${{horal.responsaveis.nome}} |" th:href="@{/tasks/horas/responsavel/list/{codigo}(codigo=${horal.responsaveis.codigo})}"></a></td>
+		   				</tr>
+		   				<tr>
+		   				
+	   					<td colspan="6" th:if="${#lists.isEmpty(horas)}">Nehuma hora cadastrada para essa Task!</td>
+	   					</tr>
+	   					
+		   			</tbody>
+		   		</table>
+		   	</div>
+			<!-- tabelas de Horas END -->			
+		      
+		<div th:replace="pages/CadastroHorasModal :: addHoras-modal"></div>
+		<div th:replace="layout/TempoTaskModal :: tempoTask-modal"></div>
+		<div th:replace="layout/DialogoConfirmacaoExclusao :: excluir-modal"></div>
+	</div>
+	
+</section>
+</html>
