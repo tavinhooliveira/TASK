@@ -28,7 +28,7 @@ public class TaskApplication {
 		
 		@Override
 		public void addViewControllers(ViewControllerRegistry registry) {
-			registry.addRedirectViewController("/", "/tasks");
+			registry.addRedirectViewController("/", "/tasks/dashboard");
 		}
 		
 	}

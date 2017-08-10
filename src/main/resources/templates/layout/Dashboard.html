@@ -13,90 +13,75 @@
 
 	<div class="page-header">
 		<div class="container-fluid">
-			<h1>Dashboard - (Em Manutenção)</h1>
+			<h3>Dashboard</h3>
 		</div>
 	</div>
-	
 	
 
 	<div class="container-fluid">
 		<div class="row">
-		<a>
-			<div class="col-sm-4 ">
+			<div class="col-md-3">
+				<a th:href="@{/tasks}">
 				<div class="aw-box">
-					<div class="Dicon glyphicon glyphicon-search">
+					<div class="Dicon"> <img th:src="@{/layout/images/dashb/task.png}"/>
 						<i class="fa  fa-heartbeat  fa-3x"></i>
 					</div>
-					<div class="aw-box__value">valor</div>
-					<div class="aw-box__title">Valor do estoque</div>
+					<div class="aw-box__value">Tasks</div>
+					<small><span class="text-success">Open:</span><b>50</b>  -  <span class="text-warning">OnHold:</span><b>05</b>  -  <span class="text-danger">Closed:</span><b>20</b></small>
 				</div>
-			</div>
-		</a>
-			
-			<div class="col-sm-4">
-				<div class="aw-box">
-					<div class="aw-box__icon">
-						<i class="fa  fa-hashtag  fa-3x"></i>
-					</div>
-					<div class="aw-box__value" >123</div>
-					<div class="aw-box__title">Itens no estoque</div>
-				</div>
+				</a>
 			</div>
 			
-			<div class="col-sm-4">
+			<div class="col-md-3">
+				<a th:href="@{/tasks/responsavel}">
 				<div class="aw-box">
-					<div class="glyphicon glyphicon-search">
-						<i class="fa  fa-users  fa-3x"></i>
+					<div class="Dicon"><img th:src="@{/layout/images/dashb/persona.png}"/>
+						<i class="fa  fa-heartbeat  fa-3x"></i>
 					</div>
-					<div class="aw-box__value"></div>
-					<div class="aw-box__title">Total de clientes</div>
+					<div class="aw-box__value">Pessoas</div>
+					<small>Lideres:<b>20</b> - Responsaveis:<b>60</b></small>
 				</div>
-			</div>
-		</div>
-		
-		<div class="row">
-			<div class="col-sm-4">
-				<div class="aw-box">
-					<div class="aw-box__icon">
-						<i class="fa  fa-usd  fa-3x"></i>
-					</div>
-					<div class="aw-box__value">1</div>
-					<div class="aw-box__title">Vendas no ano</div>
-				</div>
+				</a>
 			</div>
 			
-			<div class="col-sm-4">
+			<div class="col-md-3">
+				<a th:href="@{/tasks/modulo}">
 				<div class="aw-box">
-					<div class="aw-box__icon">
-						<i class="fa  fa-signal  fa-3x"></i>
+					<div class="Dicon"> <img th:src="@{/layout/images/dashb/modulos.png}"/>
+						<i class="fa  fa-heartbeat  fa-3x"></i>
 					</div>
-					<div class="aw-box__value"></div>
-					<div class="aw-box__title">Vendas no mês</div>
+					<div class="aw-box__value">Modulos</div>
+					<small>Total = 40</small>
 				</div>
+				</a>
 			</div>
 			
-			<div class="col-sm-4">
+			<div class="col-md-3">
+				<a th:href="@{/tasks/horas}">
 				<div class="aw-box">
-					<div class="aw-box__icon">
-						<i class="fa  fa-shopping-cart  fa-3x"></i>
+					<div class="Dicon"> <img th:src="@{/layout/images/dashb/horas.png}"/>
+						<i class="fa  fa-heartbeat  fa-3x"></i>
 					</div>
-					<div class="aw-box__value"></div>
-					<div class="aw-box__title">Ticket médio</div>
+					<div class="aw-box__value">Horas</div>
+					<small>Horas Lançadas</small>
 				</div>
+				</a>
 			</div>
+			
 		</div>
 
-		<div class="row">
+
+		<div class="row" id="graficos">
 			<div class="col-sm-6">
 				<div class="aw-graph-box">
 					<div class="aw-graph-box__header">
-						<h2 class="aw-graph-box__title">Vendas por mês <small>últimos 6 meses</small></h2>
+						<h2 class="aw-graph-box__title">Tarefas <small>últimos 6 meses</small></h2>
 					</div>
 					<div class="aw-graph-box__content">
-
 						<div>
-							<canvas id="graficoVendasPorMes" height="160"></canvas>
+							<img th:src="@{/layout/images/dashb/tarefas.gif}" style="width:500px; height:220px"/>
 						</div>
+						
 					</div>
 				</div>
 			</div>
@@ -104,12 +89,12 @@
 			<div class="col-sm-6">
 				<div class="aw-graph-box">
 					<div class="aw-graph-box__header">
-						<h2 class="aw-graph-box__title">Vendas por origem <small>últimos 6 meses</small></h2>
+						<h2 class="aw-graph-box__title">Ultimas Atualizações <small>últimos 5 dias</small></h2>
 					</div>
 					<div class="aw-graph-box__content">
 
 						<div>
-							<canvas id="graficoVendasPorOrigem" height="160"></canvas>
+							<img th:src="@{/layout/images/dashb/graficotemp.png}" style="width:500px; height:220px"/>
 						</div>
 					</div>
 				</div>

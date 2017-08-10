@@ -14,11 +14,13 @@
 <nav class="navbar  navbar-fixed-top  navbar-default" role="navigation" th:fragment="layout-header">
       <div class="container-fluid">
         <div class="navbar-header">
-        <a class="navbar-brand" th:href="@{/tasks}">
+        <a class="navbar-brand" th:href="@{/tasks/dashboard}">
 	        <img alt="ContaControle" th:src="@{/layout/images/logoTask.png}" id="logo"/>
 	    </a>
 	    
-	    <a class="glyphicon glyphicon-refresh navbar-brand" title="Refresh" rel="tooltip" data-placement="bottom" onclick="reload()"></a>
+<!-- 	    <a class="glyphicon glyphicon-refresh navbar-brand" title="Refresh" rel="tooltip" data-placement="bottom" onclick="reload()"></a> -->
+	    
+	    <a class="navbar-brand" title="Refresh" rel="tooltip" data-placement="bottom" onclick="reload()"><img th:src="@{/layout/images/refresh.gif}" style="width: 20px; height: 20px; "/></a>
 	    
 	    <a class="glyphicon glyphicon-chevron-left navbar-brand" title="Voltar" rel="tooltip" data-placement="bottom" href="javascript:history.back()"></a>
 	    <a class="glyphicon glyphicon-chevron-right navbar-brand" title="Avançar" rel="tooltip" data-placement="bottom" href="javascript:history.forward()"></a>
@@ -47,9 +49,6 @@
 					<li><a href="#cadastroModuloModal" role="button" data-toggle="modal">Cadastrar Módulo</a></li>
                     <li><a th:href="@{/tasks/responsavel}" id="ListarResponsavel" role="button" data-toggle="modal">Listar Responsável</a></li>
                     <li><a th:href="@{/tasks/lider}" id="ListarLider" role="button" data-toggle="modal">Listar Lider</a></li>
-                    <li><a th:href="@{/tasks/modulo}" id="ListarModulo" role="button" data-toggle="modal">Listar Módulo</a></li>
-                    <li><a th:href="@{/tasks/horas}" id="Listarhoras" role="button" data-toggle="modal">Listar Horas</a></li>
-                    <li><a th:href="@{/tasks/dashboard}" id="btnDashboard" >Dashboard-tst</a></li>
                   </ul>
 
                   </li>

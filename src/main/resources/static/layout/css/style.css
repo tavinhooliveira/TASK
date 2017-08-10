@@ -4,7 +4,7 @@
 .aw-link-panel {float: right; padding: 0px;}
 .aw-titulo-panel {float: left;	padding-top: 2px; color: #ffffff}
 .panel-default>.panel-heading { background-color: #D6E2E1; margin-top: 49px;}
-.panel-primary>.panel-heading {margin-top: 60px;}
+.panel-primary>.panel-heading {margin-top: 50px;}
 .navbar-inverse {background-color: #444444; border-color: #000000;}
 .navbar-brand img {margin-left: 0; margin-bottom: 15px; height: 30px;}
 #pageNav {margin: 0; float: left;}
@@ -15,7 +15,7 @@
 #datahora p {padding: 5px; color: #ffffff; font-size: 14px}
 
 /*Grid*/
-#example_length{padding: 7px; float: right}
+#example_length{padding: 18px; float: right}
 #example_filter{padding: 7px; float: left; }
 #busca{width: 650px}
 #example_paginate {margin-top: 3px; float: right; margin-right: 30px;}
@@ -192,6 +192,7 @@
 .login-page {width: 270px; padding: 8% 0 0; margin: auto;}
 .copyright{display: none;}
 
+#graficos{display: none;}
 
 }
 /*End*/
@@ -246,6 +247,8 @@
 .login-page {width: 270px; padding: 8% 0 0; margin: auto;}
 .copyright{display: none;}
 
+#graficos{display: none;}
+
 }
 /*End*/
 
@@ -298,5 +301,6 @@
 .login-page {width: 270px; padding: 8% 0 0; margin: auto;}
 .copyright{display: none;}
 
+#graficos{display: none;}
 
 }/*End*/

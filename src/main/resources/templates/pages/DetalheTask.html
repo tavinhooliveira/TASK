@@ -178,12 +178,27 @@ tela_impressao.window.close();
 		   			</thead>
 		   				   			
 		   			<tbody>
-		   				<tr th:each="horal : ${horas}" th:if="${task.codigo == horal.tasks.codigo}"> 							   						   					
+		   				<tr th:each="horal : ${horas}" th:if="${task.codigo == horal.tasks.codigo}"> 
+		   											   						   					
 		   					<td id="HSacao" class="text-center">
-		   						<a class="btn btn-link btn-xs" th:href="@{/tasks/horas/delete/{codigo}(codigo=${horal.codigo})}" 
-		   								title="Excluir" rel="tooltip" data-placement="top">
-		   							<span class="glyphicon glyphicon-trash"></span>
-		   						</a>		   						  							   						
+<!-- 		   						<a class="btn btn-link btn-xs" th:href="@{/tasks/horas/delete/{codigo}(codigo=${horal.codigo})}"  -->
+<!-- 		   								title="Excluir" rel="tooltip" data-placement="top"> -->
+<!-- 		   							<span class="glyphicon glyphicon-trash"></span> -->
+<!-- 		   						</a> -->
+									
+									<a class="btn btn-link btn-xs" data-toggle="modal" data-target="#confirmacaoExclusaoHorasModal"
+									th:attr="data-codigo=${horal.codigo},data-titulo=${horal.descricao}"
+									title="Excluir"  rel="tooltip" data-placement="bottom">
+			   							<span class="glyphicon glyphicon-trash"></span>
+			   						</a>
+		   						
+<!-- 		   						Excluir -->
+<!-- 								<a class="btn btn-danger" sec:authorize="hasRole('ROLE_ADMIN')" -->
+<!-- 									data-toggle="modal" data-target="#confirmacaoExclusaoModal" -->
+<!-- 									th:attr="data-codigo=${task.codigo},data-tipo=${task.tipo}, data-titulo=${task.titulo}" -->
+<!-- 									title="Excluir"  rel="tooltip" data-placement="bottom"> <span -->
+<!-- 										class="glyphicon glyphicon-trash"></span> -->
+<!-- 								</a>	   						  							   						 -->
 		   						
 		   					
 		   					<td id="HSData">  <a class="text-right " th:text=" ${{horal.dataHora}} " th:href="@{/tasks/horas/{codigo}(codigo=${horal.codigo})}"></a> </td>
@@ -204,6 +219,7 @@ tela_impressao.window.close();
 		<div th:replace="pages/CadastroHorasModal :: addHoras-modal"></div>
 		<div th:replace="layout/TempoTaskModal :: tempoTask-modal"></div>
 		<div th:replace="layout/DialogoConfirmacaoExclusao :: excluir-modal"></div>
+		<div th:replace="layout/DialogoConfirmacaoHorasExclusao :: excluir-horas-modal"></div>
 	</div>
 	
 </section>
