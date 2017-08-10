@@ -32,6 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 			.authorizeRequests()
 				.antMatchers("/tasks").hasRole("USER")
+				.antMatchers("/tasks/dashboard").hasRole("USER")
 				.antMatchers("/tasks/detalhes/**").hasRole("USER")
 				.antMatchers("/tasks/horas/**").hasRole("USER")
 				.antMatchers("/tasks/**").hasRole("ADMIN")

@@ -1,3 +1,10 @@
+//Funcao Bloquear Campo
+$(document).ready(function(){
+	$("a.btn_block").click(function(){
+		$(".block").removeAttr('disabled');
+	});
+});
+
 //Funcao buscarMultiplosCampos
 $(function(){
     $("#tabela input").keyup(function(){       
