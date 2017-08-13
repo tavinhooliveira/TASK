@@ -3,11 +3,11 @@ package com.accenture.model;
 public enum TipoTask {
 	
 	OUTROS(""),
-	DCR("DCR"),
-	SDN("SDN"),
-	TIR("TIR"),
+	DESENVOLVIMENTO("DEV"),
+	BUG("BUG"),
+	MELHORIA("Melhoria"),
 	MERGE("Merge"),
-	Treinamento("Treinamento"),
+	TREINAMENTO("Treinamento"),
 	TAREFAS_ADM("Tarefas_ADM");
 	
 	private String descricao;

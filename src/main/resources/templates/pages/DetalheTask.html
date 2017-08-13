@@ -63,18 +63,17 @@ tela_impressao.window.close();
 			<div class="col-ms-1">
 			<label>Código Cliente: </label><span class="text-primary" th:text="${task.cd_cliente}"></span>
 			</div>
-			
+						
 			<div class="col-ms-1">
-			<label>Código Interno: </label><span class="text-primary" th:text="${task.cd_interno}"></span>
+			<label>Task Relacionada: </label><span class="text-primary" th:text="${task.dcr_relacionada}"></span>
+			</div>
+
+			<div class="col-ms-1">
+				<label>Responsável: </label><span class="text-primary"><a th:text="${{task.responsaveis.nome}}" th:href="@{/tasks/horas/responsavel/list/{codigo}(codigo=${task.responsaveis.codigo})}">
+				</a></span> 
 			</div>
 			
-			<div class="col-ms-1">
-			<label>DRC Relacionada: </label><span class="text-primary" th:text="${task.dcr_relacionada}"></span>
-			</div>
 			
-			<div class="col-ms-1">
-				<label>Responsável: </label><span class="text-primary"><a th:text="${{task.responsaveis.nome}}" th:href="@{/tasks/horas/responsavel/list/{codigo}(codigo=${task.responsaveis.codigo})}"></a></span> 
-			</div>
 			<div class="col-ms-1">
 				<label>Lider: </label><span class="text-primary" th:text="${{task.lideres.nome}}"></span>
 			</div>	
@@ -108,7 +107,7 @@ tela_impressao.window.close();
 			</div>
 			
 			<div class="col-ms-1">
-				<label>Link SDTT: </label>
+				<label>Link Externo: </label>
 				<a th:if="${not #lists.isEmpty(task.link)}" class="btn btn-link btn-xs" th:href="${task.link}"							
 					th:text="http_link..." target="_blak">
 				</a>							
@@ -130,35 +129,49 @@ tela_impressao.window.close();
 		</div>
 		
 						
-		<div id="btns_detalhe aw-graph-box" class="col-md-12 pull-left" >	
+		<div id=" btns_detalhe aw-graph-box" class="col-md-12 pull-left" >	
 						
 			<!--Editar-->
-			<a class="btn btn-primary" sec:authorize="hasRole('ROLE_ADMIN')"
+			<a class="btn btn-info" sec:authorize="hasRole('ROLE_ADMIN')"
 				th:href="@{/tasks/{codigo}(codigo=${task.codigo})}"
 				title="Editar"  rel="tooltip" data-placement="bottom">
-				<span class="glyphicon glyphicon-pencil"></span>
+				<span class="glyphicon glyphicon-pencil">Editar</span>
 			</a>		
 			<!--Excluir-->
 			<a class="btn btn-danger" sec:authorize="hasRole('ROLE_ADMIN')"
 				data-toggle="modal" data-target="#confirmacaoExclusaoModal"
 				th:attr="data-codigo=${task.codigo},data-tipo=${task.tipo}, data-titulo=${task.titulo}"
 				title="Excluir"  rel="tooltip" data-placement="bottom"> <span
-					class="glyphicon glyphicon-trash"></span>
+					class="glyphicon glyphicon-trash"></span>Excluir
 			</a>
-						
-			<a class="btn btn-success" data-toggle="modal" data-target="#addHoras" sec:authorize="hasRole('ROLE_USER')" 
-				th:attr="data-codigo=${task.codigo}, data-tipo=${task.tipo}, data-titulo=${task.titulo}"
-				title="Lançar Horas nessa Task"  rel="tooltip" data-placement="bottom">
-				<span class="glyphicon glyphicon-time"></span>
-			</a>
-
-		 		
+					 		
       	</div>      	
 
 	</div>
 	
-		
-			<!-- tabelas de Horas BEGIN -->
+	
+	<section id="navegacao"><br>		        	
+       <ul class="nav nav-tabs">
+       		<li class="active"><a href="#tab1" data-toggle="tab" class="glyphicon glyphicon-time">Horas</a></li>
+	       	<li><a href="#tab2" data-toggle="tab" class="glyphicon glyphicon-paperclip">Anexos</a></li>
+	       	<li><a href="#tab3" data-toggle="tab" class="glyphicon glyphicon-eye-open">Historico</a></li>
+       </ul >
+       <div class="tab-content">
+       
+	        <div class="tab-pane active" id="tab1">
+		        <div class="panel-body">
+		        
+		        <div class="panel">
+		        	<!--Horas-->			
+					<a class="btn btn-success" data-toggle="modal" data-target="#addHoras" sec:authorize="hasRole('ROLE_USER')" 
+						th:attr="data-codigo=${task.codigo}, data-tipo=${task.tipo}, data-titulo=${task.titulo}"
+						title="Lançar Horas nessa Task"  rel="tooltip" data-placement="bottom">
+						<span class="glyphicon glyphicon-time"></span>Add Horas
+					</a>
+		        
+		        </div>
+		        
+		    <!-- tabelas de Horas BEGIN -->
 			<div class="table-responsive" th:if="${not #lists.isEmpty(horas)}">
 		   		<table id="tbHorasDetalhe" class="table table-hover " >
 		   		
@@ -176,25 +189,12 @@ tela_impressao.window.close();
 		   				<tr th:each="horal : ${horas}" th:if="${task.codigo == horal.tasks.codigo}"> 
 		   											   						   					
 		   					<td id="HSacao" class="text-center">
-<!-- 		   						<a class="btn btn-link btn-xs" th:href="@{/tasks/horas/delete/{codigo}(codigo=${horal.codigo})}"  -->
-<!-- 		   								title="Excluir" rel="tooltip" data-placement="top"> -->
-<!-- 		   							<span class="glyphicon glyphicon-trash"></span> -->
-<!-- 		   						</a> -->
-									
+								
 									<a class="btn btn-link btn-xs" data-toggle="modal" data-target="#confirmacaoExclusaoHorasModal"
 									th:attr="data-codigo=${horal.codigo},data-titulo=${horal.descricao}"
 									title="Excluir"  rel="tooltip" data-placement="bottom">
 			   							<span class="glyphicon glyphicon-trash"></span>
-			   						</a>
-		   						
-<!-- 		   						Excluir -->
-<!-- 								<a class="btn btn-danger" sec:authorize="hasRole('ROLE_ADMIN')" -->
-<!-- 									data-toggle="modal" data-target="#confirmacaoExclusaoModal" -->
-<!-- 									th:attr="data-codigo=${task.codigo},data-tipo=${task.tipo}, data-titulo=${task.titulo}" -->
-<!-- 									title="Excluir"  rel="tooltip" data-placement="bottom"> <span -->
-<!-- 										class="glyphicon glyphicon-trash"></span> -->
-<!-- 								</a>	   						  							   						 -->
-		   						
+			   						</a>		   						
 		   					
 		   					<td id="HSData">  <a class="text-right " th:text=" ${{horal.dataHora}} " th:href="@{/tasks/horas/{codigo}(codigo=${horal.codigo})}"></a> </td>
 		   					<td id="HSHoras">  <a class="text-center " th:text="| ${horal.horas}:Hs |" th:href="@{/tasks/horas/{codigo}(codigo=${horal.codigo})}"></a></td>
@@ -209,8 +209,41 @@ tela_impressao.window.close();
 		   			</tbody>
 		   		</table>
 		   	</div>
-			<!-- tabelas de Horas END -->			
-		      
+			<!-- tabelas de Horas END -->		        
+		        
+		       </div>
+		    </div>
+		    
+		    <div class="tab-pane" id="tab2">
+		        <div class="panel-body">
+		        	<div class="panel">			        	
+						<span class="glyphicon glyphicon-paperclip"></span>Anexos
+		        	</div>
+		        	
+		        	<div>
+		        		<form action="/file-upload" class="dropzone">
+						  <div class="fallback">
+						    <input name="file" type="file" multiple />
+						  </div>
+						</form>
+		        	</div>
+		        	
+		        	
+		        
+		       </div>
+		    </div>
+		    <div class="tab-pane" id="tab3">
+		        <div class="panel-body">
+		        <div id="fileuploader">Upload</div>
+		        
+		       </div>
+		    </div>
+		    
+	   </div>
+       
+      </section> 
+       
+	      
 		<div th:replace="pages/CadastroHorasModal :: addHoras-modal"></div>
 		<div th:replace="layout/TempoTaskModal :: tempoTask-modal"></div>
 		<div th:replace="layout/DialogoConfirmacaoExclusao :: excluir-modal"></div>

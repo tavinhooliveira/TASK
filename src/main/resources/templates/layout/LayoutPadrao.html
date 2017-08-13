@@ -27,6 +27,15 @@
 	<link rel="stylesheet" type="text/css" th:href="@{/layout/css/dataTables.bootstrap.min.css}"/>
 	<link rel="stylesheet" type="text/css" th:href="@{/layout/css/responsive.bootstrap.min.css}"/>
 	
+	<link rel="stylesheet" type="text/css" th:href="@{/layout/css/upload/basic.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/layout/css/upload/dropzone.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/layout/css/upload/min/basic.min.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/layout/css/upload/min/dropzone.min.css}"/>
+	
+	 
+	<link href="http://hayageek.github.io/jQuery-Upload-File/4.0.10/uploadfile.css" rel="stylesheet">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src="http://hayageek.github.io/jQuery-Upload-File/4.0.10/jquery.uploadfile.min.js"></script>
 	
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -60,8 +69,14 @@
 	<script th:src="@{/layout/js/dataTables.bootstrap.min.js}"></script>
 	<script th:src="@{/layout/js/dataTables.responsive.min.js}"></script>
 	<script th:src="@{/layout/js/jquery.dataTables.min.js}"></script>
-	<script th:src="@{/layout/js/responsive.bootstrap.min.js}"></script>	
+	<script th:src="@{/layout/js/responsive.bootstrap.min.js}"></script>		
 	<script th:src="@{/layout/js/paginacaoAvancada.js}"></script>
+	
+	<script th:src="@{/layout/js/upload/dropzone.js}"></script>
+	<script th:src="@{/layout/js/upload/dropzone-amd-module.js}"></script>	
+	<script th:src="@{/layout/js/upload/min/dropzone.js}"></script>	
+	<script th:src="@{/layout/js/upload/min/dropzone-amd-module.min.js}"></script>
+	
 	
 	<th:block layout:fragment="javascript-extra"></th:block>
 </body>

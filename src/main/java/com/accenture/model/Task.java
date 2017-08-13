@@ -29,10 +29,7 @@ public class Task {
 	
 	@Size(max = 12, message = "O Código do cliente não pode conter mais de 12 caracteres")
 	private String cd_cliente;
-	
-	@Size(max = 12, message = "O Código Interno não pode conter mais de 12 caracteres")
-	private String cd_interno;
-	
+		
 	@Size(max = 7, message = "A DCR Relacionada não pode conter mais de 7 caracteres")
 	private String dcr_relacionada;
 	
@@ -108,14 +105,6 @@ public class Task {
 
 	public void setCd_cliente(String cd_cliente) {
 		this.cd_cliente = cd_cliente;
-	}
-
-	public String getCd_interno() {
-		return cd_interno;
-	}
-
-	public void setCd_interno(String cd_interno) {
-		this.cd_interno = cd_interno;
 	}
 
 	public String getDcr_relacionada() {

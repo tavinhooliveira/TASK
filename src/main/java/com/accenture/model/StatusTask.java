@@ -5,8 +5,6 @@ public enum StatusTask {
 	OPEN("Open"),
 	ON_HOLD("On_Hold"),
 	REJECTED("Rejected"),
-	MERGED("Merge"),
-	DELIVERY("Delivery"),
 	CLOSED("Closed");
 	
 	private String descricao;

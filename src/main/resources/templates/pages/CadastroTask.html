@@ -36,14 +36,14 @@
 						</select>
 					</div>
 					
-					<div class="col-md-2"
-						th:classappend="${#fields.hasErrors('cd_interno')} ? has-error">
-						<label for="cd_interno" class="control-label">Código
-							Interno:</label> <input type="text" class="form-control text-uppercase"
-							size="4" id="cd_interno"
-							th:field="*{cd_interno}" />
-					</div>
-
+					<div class="col-md-2">
+						<label for="status" class="control-label">Status:</label> <select
+							class="form-control" name="status" th:field="*{status}">
+							<option th:each="status : ${todasTasksStatus}"
+								th:value="${status}" th:text="${status.descricao}"></option>
+						</select>
+					</div>					
+					
 					<div class="col-md-2"
 						th:classappend="${#fields.hasErrors('cd_cliente')} ? has-error">
 						<label for="cd_cliente" class="control-label">Código
@@ -84,13 +84,8 @@
 				</div>
 				<div class="form-group">
 
-					<div class="col-md-2">
-						<label for="status" class="control-label">Status:</label> <select
-							class="form-control" name="status" th:field="*{status}">
-							<option th:each="status : ${todasTasksStatus}"
-								th:value="${status}" th:text="${status.descricao}"></option>
-						</select>
-					</div>
+					
+					
 					
 					<div class="col-md-2">
 						<label for="responsaveis" class="control-label">Responsavel:<span class="text-danger">*</span></label><a class="text-primary pull-right glyphicon glyphicon-plus-sign" data-toggle="modal" data-target="#cadastroResponsavelModal"></a>
@@ -110,8 +105,17 @@
 						</select>
 					</div>
 					
+					<div class="col-md-2" th:classappend="${#fields.hasErrors('modulos')} ? has-error">
+						<label for="modulos" class="control-label">Modulo:</label><a class="text-primary pull-right footer glyphicon glyphicon-plus-sign" data-toggle="modal" data-target="#cadastroModuloModal"></a>
+						<select class="form-control" name="modulos" th:field="*{modulos}">
+							<option th:each="modulos : ${tdModulos}"  
+								th:value="${modulos.codigo}" th:text="${modulos.nome}">
+							</option>
+						</select>
+					</div>
+					
 					<div class="col-md-4">
-						<label for="link" class="control-label">Link SDTT: <span class="text-warning">adicionar o http://</span></label>
+						<label for="link" class="control-label">Link Externo: <span class="text-warning">adicionar o http://</span></label>
 						<input type="text" class="form-control" id="link" placeholder="Link SDTT"
 						th:field="*{link}"/>
 					</div>
@@ -129,25 +133,18 @@
 				</div>				
 				<div class="form-group">
 					
-					<div class="col-md-4"
+					<div class="col-md-6"
 						th:classappend="${#fields.hasErrors('titulo')} ? has-error">
 						<label for="titulo" class="control-label">Titulo:<span class="text-danger">*</span></label> <input type="text"
 							class="form-control text-uppercase" placeholder="Titulo da Task"
 							id="titulo" th:field="*{titulo}" />
 					</div>
 					
-					<div class="col-md-2" th:classappend="${#fields.hasErrors('modulos')} ? has-error">
-						<label for="modulos" class="control-label">Modulo:</label><a class="text-primary pull-right footer glyphicon glyphicon-plus-sign" data-toggle="modal" data-target="#cadastroModuloModal"></a>
-						<select class="form-control" name="modulos" th:field="*{modulos}">
-							<option th:each="modulos : ${tdModulos}"  
-								th:value="${modulos.codigo}" th:text="${modulos.nome}">
-							</option>
-						</select>
-					</div>
+					
 					
 					<div class="col-md-6"
 						th:classappend="${#fields.hasErrors('linksvn')} ? has-error">
-						<label for="linksvn" class="control-label">Link SVN: <span class="text-warning">adicionar o http://</span></label>
+						<label for="linksvn" class="control-label">Link SVN/GIT: <span class="text-warning">adicionar o http://</span></label>
 						<input type="text" class="form-control" id="linksvn" placeholder="Link SVN"
 						th:field="*{linksvn}"/>
 					</div>					

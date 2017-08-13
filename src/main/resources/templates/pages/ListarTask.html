@@ -27,13 +27,12 @@
 					class="table table-striped table-bordered dt-responsive table-hover">
 					<thead>
 						<tr>
-							<th id="tbid" class="text-left">ID</th>
+							<th id="tbid" class="text-left">Codigo</th>
 							<th id="tbtitulo" class="text-left ">Titulo</th>
-<!-- 							<th id="tbtipo" class="text-left">Tipo</th> -->
+							<th id="tbtipo" class="text-left">Tipo</th>
 							<th id="tbstatus" class="text-left">Status</th>
-							<th id="tbinterno" class="text-left">CD. Interno</th>
 							<th id="tbcliente" class="text-left">CD. Cliente</th>
-							<th id="tbdcr" class="text-left">DCR</th>
+							<th id="tbdcr" class="text-left">Task Relacionada</th>
 							<th id="tbdtaInicial" class="text-center col-md-1">Data Inicial</th>
 							<th id="tbacao" class="text-center col-md-1" sec:authorize="hasRole('ROLE_ADMIN')">Ação</th>
 							<!--Campos Ocultos na Grid, mas excencial para a pesquisa-->
@@ -56,9 +55,8 @@
 							</td>
 							
 							<!--Restante da Lista-->														
-<!-- 							<td id="tbtipo" class="text-left" th:text="${task.tipo}"></td>							 -->
+							<td id="tbtipo" class="text-left" th:text="${task.tipo}"></td>							
 							<td id="tbstatus"><span class="text-center" th:text="${task.status.descricao}" th:classappend="${task.open ? 'text-success lead' : 'text'}"></span></td>							
-							<td id="tbinterno" class="text-left text-uppercase" th:text="${task.cd_interno}"></td>
 							<td id="tbcliente" class="text-left text-uppercase" th:text="${task.cd_cliente}"></td>
 							<td id="tbdcr" class="text-left text-uppercase" th:text="${task.dcr_relacionada}"></td>
 							<td id="tbdtaInicial" class="text-center" th:text="${{task.dataInicial}}"></td>

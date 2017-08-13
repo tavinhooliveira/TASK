@@ -1,3 +1,12 @@
+$(document).ready(function()
+{
+	$("#fileuploader").uploadFile({
+	url:"YOUR_FILE_UPLOAD_URL",
+	fileName:"myfile"
+	});
+});
+
+
 //Funcao Bloquear Campo
 $(document).ready(function(){
 	$("a.btn_block").click(function(){
