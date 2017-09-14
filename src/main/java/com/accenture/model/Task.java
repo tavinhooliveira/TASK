@@ -71,6 +71,9 @@ public class Task {
 		
 	@OneToMany(mappedBy = "tasks")
 	private List<Hora> horas;
+	
+	@OneToMany(mappedBy = "tasks")
+	private List<Anexo> anexo;
 			
 	public List<Hora> getHoras() {
 		return horas;
@@ -79,6 +82,15 @@ public class Task {
 	public void setHoras(List<Hora> horas) {
 		this.horas = horas;
 	}
+	
+	public List<Anexo> getAnexo() {
+		return anexo;
+	}
+
+	public void setAnexo(List<Anexo> anexo) {
+		this.anexo = anexo;
+	}
+
 
 	@Enumerated(EnumType.STRING)
 	private StatusTask status;

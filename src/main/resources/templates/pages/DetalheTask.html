@@ -216,25 +216,30 @@ tela_impressao.window.close();
 		    
 		    <div class="tab-pane" id="tab2">
 		        <div class="panel-body">
-		        	<div class="panel">			        	
-						<span class="glyphicon glyphicon-paperclip"></span>Anexos
-		        	</div>
-		        	
-		        	<div>
-		        		<form action="/file-upload" class="dropzone">
-						  <div class="fallback">
-						    <input name="file" type="file" multiple />
-						  </div>
-						</form>
-		        	</div>
-		        	
+
+		        	<div class="panel col-md-12 uploader">			        	
+						<div class="row ">
+			        		<form method="POST" th:action="@{/tasks/anexo}" th:object="${anexo}">
+							  <button type="submit" class="btn btn-success col-md-1">Enviar</button>
+							  <span alert detalhes>
+							  <input type="hidden"  name='codigo'  value='codigo' id="codigo"/>
+							  <input name='task' th:value="${task.codigo}" id="task"/>
+							  <input class="col-md-4" name="upload" type="file"/>
+							  <input name='data' th:value="${dataHora}" id="data" data-date-format="dd/mm/yyyy"/>
+							  </span>
+							  
+							</form>
+		        		</div>
+		        	</div>   	
 		        	
 		        
 		       </div>
 		    </div>
 		    <div class="tab-pane" id="tab3">
 		        <div class="panel-body">
-		        <div id="fileuploader">Upload</div>
+		       <div class="panel col-md-12">			        	
+						<span class="glyphicon glyphicon-paperclip"></span>Anexos
+		        	</div>
 		        
 		       </div>
 		    </div>
