@@ -1,11 +1,3 @@
-$(document).ready(function()
-{
-	$("#fileuploader").uploadFile({
-	url:"YOUR_FILE_UPLOAD_URL",
-	fileName:"myfile"
-	});
-});
-
 
 //Funcao Bloquear Campo
 $(document).ready(function(){
@@ -28,9 +20,6 @@ $(function(){
         });
     });
  
-    $("#tabela input").blur(function(){
-        $(this).val("");
-    });
 });
 
 

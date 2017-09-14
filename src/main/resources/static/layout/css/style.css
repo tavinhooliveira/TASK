@@ -29,6 +29,7 @@
 /*login*/
 #login{}
 
+.borderLinha { border-bottom: 1px solid #dad9d9;}
 
 /*Error 403*/
 #error403{margin-top: 5%;}
@@ -132,6 +133,7 @@
 }
 
 
+#DashboardBtnPrincipal a {text-decoration: none;}
 
 
 
@@ -186,7 +188,7 @@
 #HSListacao {display: none;}
 
 
-#HSDescricao{display: none;}
+
 #tempo{display: none;}
 
 .login-page {width: 270px; padding: 8% 0 0; margin: auto;}
@@ -243,7 +245,7 @@
 #HSListacao {display: none;}
 
 
-#HSDescricao{display: none;}
+
 #tempo{display: none;}
 
 .login-page {width: 270px; padding: 8% 0 0; margin: auto;}
@@ -299,7 +301,7 @@
 #HSListacao {display: none;}
 
 
-#HSDescricao{display: none;}
+
 #tempo{display: none;}
 
 .login-page {width: 270px; padding: 8% 0 0; margin: auto;}

@@ -18,45 +18,46 @@
 	</div>
 	
 
-	<div class="container-fluid">
+	<div class="container-fluid" id="DashboardBtnPrincipal">
 		<div class="row">
-			<div class="col-md-3">
+			<div class="col-md-3" id="DashboardTask">
 				<a th:href="@{/tasks}">
 				<div class="aw-box">
 					<div class="Dicon"> <img th:src="@{/layout/images/dashb/task.png}"/>
 						<i class="fa  fa-heartbeat  fa-3x"></i>
+					<span class="pull-right text-info">Total:<b th:text="${{taskContTotal}}"></b></span>
 					</div>
 					<div class="aw-box__value">Tasks</div>
-					<small><span class="text-success">Open:</span><b>50</b>  -  <span class="text-warning">OnHold:</span><b>05</b>  -  <span class="text-danger">Closed:</span><b>20</b></small>
+					<small><span class="text-success">Open:</span><b th:text="${{taskContOpen}}"></b>  -  <span class="text-warning" >OnHold:</span><b th:text="${{taskContOnHold}}">05</b>  -  <span class="text-info">Closed:</span><b th:text="${{taskContClosed}}">20</b></small>  -  <span class="text-danger">Rejected:</span><b th:text="${{taskContRejected}}">20</b></small>
 				</div>
 				</a>
 			</div>
 			
-			<div class="col-md-3">
-				<a th:href="@{/tasks/responsavel}">
+			<div class="col-md-3" id="DashboardPessoas">
+				
 				<div class="aw-box">
 					<div class="Dicon"><img th:src="@{/layout/images/dashb/persona.png}"/>
 						<i class="fa  fa-heartbeat  fa-3x"></i>
 					</div>
-					<div class="aw-box__value">Pessoas</div>
-					<small>Lideres:<b>20</b> - Responsaveis:<b>60</b></small>
+					<div class="aw-box__value"><a>Pessoas</a></div>
+					<a th:href="@{/tasks/lider}"><small>Lideres:<b th:text="${{pessoasContLideres}}"></b></a> - <a th:href="@{/tasks/responsavel}">Responsaveis:<b th:text="${{pessoasContResponsavel}}"></b></small></a>
 				</div>
-				</a>
+				
 			</div>
 			
-			<div class="col-md-3">
+			<div class="col-md-3" id="DashboardModulos">
 				<a th:href="@{/tasks/modulo}">
 				<div class="aw-box">
 					<div class="Dicon"> <img th:src="@{/layout/images/dashb/modulos.png}"/>
 						<i class="fa  fa-heartbeat  fa-3x"></i>
 					</div>
 					<div class="aw-box__value">Modulos</div>
-					<small>Total = 40</small>
+					<small>Total = <b th:text="${{modulosAll}}"></b></small>
 				</div>
 				</a>
 			</div>
 			
-			<div class="col-md-3">
+			<div class="col-md-3" id="DashboardHoras">
 				<a th:href="@{/tasks/horas}">
 				<div class="aw-box">
 					<div class="Dicon"> <img th:src="@{/layout/images/dashb/horas.png}"/>
@@ -104,8 +105,7 @@
 </section>
 
 <th:block layout:fragment="javascript-extra">	
-	<script th:src="@{/layout/js/Chart.min.js}"></script>
-	<script th:src="@{/layout/js/dashboard.graficos.js}"></script>
+
 </th:block>
 
 </html>
