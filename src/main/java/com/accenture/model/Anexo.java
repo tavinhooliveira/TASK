@@ -20,7 +20,7 @@ public class Anexo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
 	
-	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")
+	@DateTimeFormat(pattern = "dd/mm/yyyy")
 	@Temporal(TemporalType.DATE)
 	private Date dataHora;
 	

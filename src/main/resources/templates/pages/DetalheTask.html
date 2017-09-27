@@ -177,29 +177,29 @@ tela_impressao.window.close();
 		   		
 		   			<thead class="table-bordered" th:if="${not #lists.isEmpty(horas)}">
 		   				<tr>
-		   					<th id="HSAcao" class="text-center col-md-1 glyphicon glyphicon-trash"></th>
 		   					<th id="HSData" class="text-left ">Data</th>
 		   					<th id="HSHoras" class="text-left">Horas</th>
 		   					<th id="HSDescricao" class="text-left">Descrição</th>
 		   					<th id="HSResponsavel" class="text-left">Responsável</th>   				
+		   					<th id="HSAcao" class="text-center col-md-1 glyphicon glyphicon-trash"></th>
 		   				</tr>
 		   			</thead>
 		   				   			
 		   			<tbody>
 		   				<tr th:each="horal : ${horas}" th:if="${task.codigo == horal.tasks.codigo}"> 
 		   											   						   					
+		   					
+		   					<td id="HSData">  <a class="text-right " th:text=" ${{horal.dataHora}} " th:href="@{/tasks/horas/{codigo}(codigo=${horal.codigo})}"></a> </td>
+		   					<td id="HSHoras">  <a class="text-center " th:text="| ${horal.horas}:Hs |" th:href="@{/tasks/horas/{codigo}(codigo=${horal.codigo})}"></a></td>
+		   					<td id="HSDescricao">  <a class="text-left" th:text="${horal.descricao}" th:href="@{/tasks/horas/{codigo}(codigo=${horal.codigo})}"></a></td>
+		   					<td id="HSResponsavel"> <a class="text-left" th:text=" | ${{horal.responsaveis.nome}} |" th:href="@{/tasks/horas/responsavel/list/{codigo}(codigo=${horal.responsaveis.codigo})}"></a></td>
 		   					<td id="HSacao" class="text-center">
 								
 									<a class="btn btn-link btn-xs" data-toggle="modal" data-target="#confirmacaoExclusaoHorasModal"
 									th:attr="data-codigo=${horal.codigo},data-titulo=${horal.descricao}"
 									title="Excluir"  rel="tooltip" data-placement="bottom">
 			   							<span class="glyphicon glyphicon-trash"></span>
-			   						</a>		   						
-		   					
-		   					<td id="HSData">  <a class="text-right " th:text=" ${{horal.dataHora}} " th:href="@{/tasks/horas/{codigo}(codigo=${horal.codigo})}"></a> </td>
-		   					<td id="HSHoras">  <a class="text-center " th:text="| ${horal.horas}:Hs |" th:href="@{/tasks/horas/{codigo}(codigo=${horal.codigo})}"></a></td>
-		   					<td id="HSDescricao">  <a class="text-left" th:text="${horal.descricao}" th:href="@{/tasks/horas/{codigo}(codigo=${horal.codigo})}"></a></td>
-		   					<td id="HSResponsavel"> <a class="text-left" th:text=" | ${{horal.responsaveis.nome}} |" th:href="@{/tasks/horas/responsavel/list/{codigo}(codigo=${horal.responsaveis.codigo})}"></a></td>
+			   						</a></td>		   						
 		   				</tr>
 		   				<tr>
 		   				
@@ -217,19 +217,64 @@ tela_impressao.window.close();
 		    <div class="tab-pane" id="tab2">
 		        <div class="panel-body">
 
-		        	<div class="panel col-md-12 uploader">			        	
-						<div class="row ">
+		        	<div class="panel col-md-12 uploader">
+		        	<!-- Form Anexo -->			        	
+						<div class="row panel">
 			        		<form method="POST" th:action="@{/tasks/anexo}" th:object="${anexo}">
 							  <button type="submit" class="btn btn-success col-md-1">Enviar</button>
-							  <span alert detalhes>
-							  <input type="hidden"  name='codigo'  value='codigo' id="codigo"/>
-							  <input name='task' th:value="${task.codigo}" id="task"/>
-							  <input class="col-md-4" name="upload" type="file"/>
-							  <input name='data' th:value="${dataHora}" id="data" data-date-format="dd/mm/yyyy"/>
-							  </span>
+							  <span class="alert" >
 							  
+<!-- 							  <input name='task' th:value="${task.codigo}" id="task" readonly style="display: none;" /> -->
+<!-- 								<input name='task.codigo' th:value="${task.codigo}" id="task" /> -->
+							  <input class="col-md-4" name="arquivo" type="file" th:value="${arquivo}" />
+<!-- 							  <input name='dataHora' th:value="${dataHora}" id="dataHora"/> -->
+								<label>Date</label>
+								<input type="text" id="dataHora"
+								data-provide="datepicker" th:value="${dataHora}" 
+								data-date-format="dd/mm/yyyy" data-date-language="pt-BR"
+								data-date-autoclose="true" data-date-today-highlight="true"
+								data-date-orientation="bottom"
+								todayHighlight="true"/>
+								<span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar"></i></span>
+															
+							  </span>							  
 							</form>
 		        		</div>
+		        		
+		     <!-- tabelas de Anexp BEGIN -->
+		    <div class="row">
+			<div class="table-responsive" th:if="${not #lists.isEmpty(horas)}">
+		   		<table id="tbHorasDetalhe" class="table table-hover " >
+		   		
+		   			<thead class="table-bordered" th:if="${not #lists.isEmpty(horas)}">
+		   				<tr>
+		   					<th id="AXCodigo" class="text-left ">Código</th>
+		   					<th id="AXData" class="text-left">Data</th>
+		   					<th id="AXAnexo" class="text-left">Anexo</th>
+		   					<th id="AXCD_Task" class="text-left">Task</th>   				
+		   					<th id="AXAcao" class="text-center col-md-1 glyphicon glyphicon-trash"></th>
+		   				</tr>
+		   			</thead>
+		   				   			
+		   			<tbody>
+		   				<tr th:each="anexos : ${anexos}">
+		   					<td id="AXCodigo"class="text-left" th:text="${anexos.codigo}" ></td>
+		   					<td id="AXData"class="text-left" th:text="${anexos.dataHora}" ></td>
+		   					<td id="AXAnexo"class="text-left" th:text="${anexos.arquivo}" ></td>
+		   					<td id="AXCD_Task" class="text-left" th:text="${anexos.codigo}" ></td>
+		   				</tr>
+		   				<tr>
+		   				
+	   					<td colspan="6" th:if="${#lists.isEmpty(anexos)}">Nehuma Anexo cadastrado</td>
+	   					</tr>
+	   					
+		   			</tbody>
+		   		</table>
+		   	</div>
+			<!-- tabelas de Anexo END -->
+		        		
+		        		</div>
+		        		
 		        	</div>   	
 		        	
 		        

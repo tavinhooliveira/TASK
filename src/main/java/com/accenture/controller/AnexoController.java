@@ -18,22 +18,23 @@ public class AnexoController {
 	
 	@Autowired
 	private Anexos anexos;
-	
+		
 	// Salvar
 	@RequestMapping(method = RequestMethod.POST)
 	public String salvar(@Validated Anexo anexo, Task task, Errors errors, RedirectAttributes attributes) {
 		attributes.addAttribute(task);
 		if (errors.hasErrors()) {
-			return "redirect:/tasks/detalhes/" + anexo.getTasks().getCodigo();
+			return "redirect:/tasks/detalhes/" + task.getCodigo();
 		}
 		try {
 			anexos.save(anexo);
 			attributes.addFlashAttribute("mensagem", "Anexo adicionado com sucesso!");
-			return "redirect:/tasks/detalhes/" + anexo.getTasks().getCodigo();
+			return "redirect:/tasks/detalhes/" + task.getCodigo();
 		} catch (IllegalArgumentException e) {
 			errors.rejectValue(null, e.getMessage());
 			return "redirect:/tasks/detalhes/" + anexo.getTasks().getCodigo();
 		}
 	}
+		
 
 }

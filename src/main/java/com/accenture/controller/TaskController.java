@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.accenture.model.Anexo;
 import com.accenture.model.Hora;
 import com.accenture.model.Lider;
 import com.accenture.model.Modulo;
@@ -21,6 +22,7 @@ import com.accenture.model.Responsavel;
 import com.accenture.model.StatusTask;
 import com.accenture.model.Task;
 import com.accenture.model.TipoTask;
+import com.accenture.repository.Anexos;
 import com.accenture.repository.Horas;
 import com.accenture.repository.Lideres;
 import com.accenture.repository.Modulos;
@@ -50,6 +52,9 @@ public class TaskController {
 
 	@Autowired
 	private Horas horas;
+	
+	@Autowired
+	private Anexos anexos;
 
 	
 	// Cadastro Novo
@@ -143,6 +148,8 @@ public class TaskController {
 		mv.addObject("horas", allHoras);
 		List<Responsavel> allResponsaveis = responsaveis.findAll();
 		mv.addObject("tdresponsaveis", allResponsaveis);
+		List<Anexo> allAnexos = anexos.findAll();
+		mv.addObject("anexos", allAnexos);
 
 		return mv;
 	}

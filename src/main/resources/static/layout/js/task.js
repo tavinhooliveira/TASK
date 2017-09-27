@@ -7,18 +7,18 @@ $(document).ready(function(){
 });
 
 //Data Atual Input anexo
-$(document).ready(function(){
-	
-	var currentTime = new Date()
-	var month = currentTime.getMonth() + 1;
-	var day = currentTime.getDate();
-	var year = currentTime.getFullYear();
-	var Hours = currentTime.getHours();
-	var Minutes = currentTime.getMinutes();
-	   
-	document.getElementById('data').value = day + "/" +month+ "/" +year;
-
-});
+//$(document).ready(function(){
+//	
+//	var currentTime = new Date()
+//	var month = currentTime.getMonth() + 1;
+//	var day = currentTime.getDate();
+//	var year = currentTime.getFullYear();
+//	var Hours = currentTime.getHours();
+//	var Minutes = currentTime.getMinutes();
+//	   
+//	document.getElementById('dataHora').value = day + "/" +month+ "/" +year;
+//
+//});
 
 
 
